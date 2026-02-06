@@ -2,7 +2,13 @@ import React, { useState, useRef } from "react";
 import { motion } from "motion/react";
 import GlassCard from "../GlassCard";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
-import { ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  ChevronLeft,
+  ChevronRight,
+  ChevronDown,
+} from "lucide-react";
 import { translations, type Language } from "../../i18n/translations";
 
 interface PortfolioSectionProps {
@@ -14,6 +20,7 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({
 }) => {
   const t = translations[language];
   const [activeStack, setActiveStack] = useState<string | null>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const projects = [
@@ -23,8 +30,8 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({
       stacks: ["React", "Node.js", "PostgreSQL", "TypeScript", "Docker"],
       description: t.portfolio.projects.devxp.description,
       image:
-       "https://images.unsplash.com/photo-1750056393349-dfaf647f7400?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3ZWIlMjBkZXNpZ24lMjBtb2JpbGUlMjBhcHB8ZW58MXx8fHwxNzU4Mjg1NzY3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-        
+        "https://images.unsplash.com/photo-1750056393349-dfaf647f7400?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3ZWIlMjBkZXNpZ24lMjBtb2JpbGUlMjBhcHB8ZW58MXx8fHwxNzU4Mjg1NzY3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+
       technologies: [
         "React",
         "Node.js",
@@ -40,22 +47,60 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({
     {
       id: 2,
       title: "TaskList",
-      stacks: ["C#", ".Net", "Angular", "MySQL", "JWT", "TailwindCSS", "TypeScript", "Docker"],
-      description: "Full-stack task management application with authentication, Clean Architecture backend, and modern Angular frontend.",
+      stacks: [
+        "C#",
+        ".Net",
+        "Angular",
+        "MySQL",
+        "JWT",
+        "TailwindCSS",
+        "TypeScript",
+        "Docker",
+      ],
+      description:
+        "Full-stack task management application with authentication, Clean Architecture backend, and modern Angular frontend.",
       image:
-      "https://images.unsplash.com/photo-1575388902449-6bca946ad549?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXNoYm9hcmQlMjBhbmFseXRpY3MlMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzU4Mjc5NTg1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      technologies: ["C#", ".Net", "Angular", "MySQL", "JWT", "TailwindCSS", "TypeScript", "Docker"],
+        "https://images.unsplash.com/photo-1575388902449-6bca946ad549?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXNoYm9hcmQlMjBhbmFseXRpY3MlMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzU4Mjc5NTg1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      technologies: [
+        "C#",
+        ".Net",
+        "Angular",
+        "MySQL",
+        "JWT",
+        "TailwindCSS",
+        "TypeScript",
+        "Docker",
+      ],
       liveUrl: "#",
       githubUrl: "https://github.com/cosmicnodestudio/tasklist",
     },
     {
       id: 3,
       title: "Leads Management System",
-      stacks: ["Vue.js", "MySQL", "JWT", "Python", "Flask", "TailwindCSS", "JavaScript", "Docker"],
-      description: "CRM-style system to manage leads, track interactions, and monitor conversion metrics in a real-world business flow.",
+      stacks: [
+        "Vue.js",
+        "MySQL",
+        "JWT",
+        "Python",
+        "Flask",
+        "TailwindCSS",
+        "JavaScript",
+        "Docker",
+      ],
+      description:
+        "CRM-style system to manage leads, track interactions, and monitor conversion metrics in a real-world business flow.",
       image:
         "https://images.unsplash.com/photo-1694599048261-a1de00f0117e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY29tbWVyY2UlMjB3ZWJzaXRlJTIwZGVzaWdufGVufDF8fHx8MTc1ODIzMTMwOXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      technologies: ["Vue.js", "MySQL", "JWT", "Python", "Flask", "TailwindCSS", "JavaScript", "Docker"],
+      technologies: [
+        "Vue.js",
+        "MySQL",
+        "JWT",
+        "Python",
+        "Flask",
+        "TailwindCSS",
+        "JavaScript",
+        "Docker",
+      ],
       liveUrl: "#",
       githubUrl: "https://github.com/cosmicnodestudio/leadsmanagement",
     },
@@ -122,12 +167,13 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({
         </motion.div>
 
         {/* Stack Filter */}
+        {/* Desktop Filter - Hidden on mobile */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-3 mb-12 px-4"
+          className="hidden sm:flex flex-wrap justify-center gap-3 mb-12 px-4"
         >
           <motion.button
             onClick={() => setActiveStack(null)}
@@ -164,14 +210,87 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({
           ))}
         </motion.div>
 
+        {/* Mobile Filter - Dropdown */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="sm:hidden flex justify-center mb-8 px-4"
+        >
+          <div className="relative">
+            <motion.button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="
+                px-6 py-2 rounded-full font-mono transition-all duration-300
+                bg-gradient-to-r from-cyan-500 to-purple-600 text-white
+                flex items-center gap-2
+              "
+            >
+              {activeStack || t.portfolio.allProjects}
+              <ChevronDown
+                className={`w-4 h-4 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
+              />
+            </motion.button>
+
+            {/* Dropdown Menu */}
+            {isDropdownOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="absolute top-full mt-2 left-0 right-0 bg-black/95 border border-white/20 rounded-lg backdrop-blur-md z-20 min-w-max"
+              >
+                <motion.button
+                  onClick={() => {
+                    setActiveStack(null);
+                    setIsDropdownOpen(false);
+                  }}
+                  className={`
+                    w-full text-left px-6 py-2 font-mono transition-all border-b border-white/10
+                    ${
+                      activeStack === null
+                        ? "text-cyan-400 bg-white/10"
+                        : "text-white/70 hover:text-white hover:bg-white/5"
+                    }
+                  `}
+                >
+                  {t.portfolio.allProjects}
+                </motion.button>
+                {allStacks.map((stack) => (
+                  <motion.button
+                    key={stack}
+                    onClick={() => {
+                      setActiveStack(stack);
+                      setIsDropdownOpen(false);
+                    }}
+                    className={`
+                      w-full text-left px-6 py-2 font-mono transition-all border-b border-white/10 last:border-b-0
+                      ${
+                        activeStack === stack
+                          ? "text-cyan-400 bg-white/10"
+                          : "text-white/70 hover:text-white hover:bg-white/5"
+                      }
+                    `}
+                  >
+                    {stack}
+                  </motion.button>
+                ))}
+              </motion.div>
+            )}
+          </div>
+        </motion.div>
+
         {/* Projects Horizontal Scroll */}
-        <div className="relative">
-          {/* Navigation Arrows */}
+        <div className="relative px-4 sm:px-0">
+          {/* Navigation Arrows - Hidden on mobile, visible on desktop */}
           <motion.button
             onClick={scrollLeft}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="absolute -left-11 top-1/2 -translate-y-1/2 z-10 p-1 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-colors border border-white/20"
+            className="hidden sm:flex absolute -left-11 top-1/2 -translate-y-1/2 z-10 p-1 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-colors border border-white/20 items-center justify-center"
           >
             <ChevronLeft className="w-6 h-6" />
           </motion.button>
@@ -180,15 +299,38 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({
             onClick={scrollRight}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="absolute -right-12 top-1/2 -translate-y-1/2 z-10 p-1 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-colors border border-white/20"
+            className="hidden sm:flex absolute -right-12 top-1/2 -translate-y-1/2 z-10 p-1 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-colors border border-white/20 items-center justify-center"
           >
             <ChevronRight className="w-6 h-6" />
           </motion.button>
 
+          {/* Mobile Navigation Arrows - Inside the scroll area */}
+          <div className="sm:hidden flex justify-between items-center mb-4">
+            <motion.button
+              onClick={scrollLeft}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-colors border border-white/20"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </motion.button>
+            <span className="text-white/50 font-mono text-sm">
+              {t.portfolio.allProjects}
+            </span>
+            <motion.button
+              onClick={scrollRight}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-colors border border-white/20"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </motion.button>
+          </div>
+
           {/* Scrollable Container */}
           <div
             ref={scrollContainerRef}
-            className="flex gap-5 overflow-x-auto scrollbar-hide pb-4 px3"
+            className="flex gap-5 overflow-x-auto scrollbar-hide pb-4"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {filteredProjects.map((project, index) => (
