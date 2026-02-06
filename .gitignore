@@ -95,3 +95,5 @@ next-env.d.ts
 tmp/
 temp/
 
+# npm package files
+package-lock.json
